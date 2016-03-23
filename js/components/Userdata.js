@@ -9,7 +9,7 @@ export default class UserData extends Component {
     render() {
         return (
             <tr onClick={this.handleClick.bind(this)} key={this.props.key}>
-                <td><img className="user-list__user-image" src={"/images/" + this.props.image + ".svg"} alt={ this.props.name } /></td>
+                <td><img className="user-list__user-image" src={"images/" + this.props.image + ".svg"} alt={ this.props.name } /></td>
                 <td>{ this.props.name }</td>
                 <td>{ this.props.age }</td>
                 <td>{ this.props.phone }</td>

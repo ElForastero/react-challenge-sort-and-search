@@ -11,7 +11,7 @@ export default class ActiveUser extends Component {
 
         return (
             <div className="h-bordered text-center">
-                <img className="user-info__user-image" src={"/images/" + this.props.user.image + ".svg"} alt={this.props.user.name} />
+                <img className="user-info__user-image" src={"images/" + this.props.user.image + ".svg"} alt={this.props.user.name} />
                 <h2>{this.props.user.name}</h2>
                 <table className="table table-condensed text-center">
                     <tbody>
