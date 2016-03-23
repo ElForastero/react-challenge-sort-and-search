@@ -16,7 +16,7 @@ class Bootstrap extends Component {
 
     componentDidMount() {
         let request = new XMLHttpRequest();
-        request.open('GET', '/data.json', true);
+        request.open('GET', './../data.json', true);
 
         request.onload = () => {
             if(request.status >= 200) {
@@ -106,7 +106,7 @@ class Bootstrap extends Component {
 
     searchUsers(value) {
         let request = new XMLHttpRequest();
-        request.open('GET', '/data.json');
+        request.open('GET', './../data.json');
         request.onload = () => {
             if(request.status >= 200) {
                 let source = JSON.parse(request.responseText);
