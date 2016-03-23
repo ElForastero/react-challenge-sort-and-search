@@ -45,15 +45,63 @@ class Bootstrap extends Component {
     }
 
     handleSearch(value) {
-        //this.setState({
-        //    users: this.searchUsers(value)
-        //})
-        console.log(value);
         this.searchUsers(value);
     }
 
-    handleSorting(value) {
-        console.log(value);
+    handleSorting(value, direction) {
+
+        let users = this.state.users;
+
+        switch(value) {
+            case "age":
+                users = users.sort((a, b) => a.age - b.age);
+                break;
+            case "name":
+                users = users.sort((a, b) => a.name > b.name);
+                break;
+        }
+
+        if ("age" == value) {
+            switch(direction) {
+                case "forward":
+                    users = users.sort((a, b) => a.age - b.age);
+                    break;
+                case "backward":
+                    users = users.sort((a, b) => b.age - a.age);
+                    break;
+            }
+        } else if ("name" == value) {
+            switch (direction) {
+                case "forward":
+                    users = users.sort((a, b) => {
+                        if (a.name > b.name) {
+                            return 1;
+                        } else if (a.name < b.name) {
+                            return -1;
+                        }
+
+                        return 0;
+                    });
+                    break;
+                case "backward":
+                    users = users.sort((a, b) => {
+                        if (a.name < b.name) {
+                            return 1;
+                        } else if (a.name > b.name) {
+                            return -1;
+                        }
+
+                        return 0;
+                    });
+                    break;
+            }
+        }
+
+        this.setState({
+            users: users
+        });
+
+        this.updateActiveUser(this.state.users[0]);
     }
 
     searchUsers(value) {
@@ -67,14 +115,11 @@ class Bootstrap extends Component {
                     return user.name.toLowerCase().indexOf(value.toLowerCase()) != -1
                 });
 
-                if(users.length > 0 ) {
-
                     this.setState({
                         users: users
                     })
 
                     this.updateActiveUser(users[0]);
-                }
             }
         }
         request.send();

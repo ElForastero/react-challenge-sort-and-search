@@ -3,6 +3,12 @@ import React, { Component } from 'react';
 export default class ActiveUser extends Component {
 
     render() {
+        if ("undefined" === typeof this.props.user) {
+            return(
+                <h2>Nothing found :(</h2>
+            );
+        }
+
         return (
             <div className="h-bordered text-center">
                 <img className="user-info__user-image" src={"/images/" + this.props.user.image + ".svg"} alt={this.props.user.name} />
